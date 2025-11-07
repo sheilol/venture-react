@@ -1,0 +1,71 @@
+body, html {
+    font-family: "SUSE Mono", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 274;
+    font-style: normal;
+
+}
+.home_bg {
+  background-color: #242424; /* Dark background color */
+  padding: 20px; /* Optional padding */
+}
+.home_div {
+  max-width: 900px;
+  margin: 40px 0 0 0;   /* Remove left/right auto margin */
+  padding: 0 1.5rem;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #FFFFFF;
+  background-color: #242424;
+  text-align: left;
+}
+
+.home_div h1 {
+  font-size: 6vw;         
+  margin-bottom: 1.2rem;
+  color: #84c125;
+  text-align: left;
+  font-weight: 274;
+  white-space: nowrap;    
+  line-height: 1.1;
+}
+.home_div h2 {
+  font-size: 4vw;         
+  margin-bottom: 1.2rem;
+  color: #84c125;
+  text-align: left;
+  font-weight: 274;
+  white-space: nowrap;    
+  line-height: 1.1;
+}
+
+.home_div ul {
+  margin: 0.5rem 0 0.5rem 1.5rem;
+  padding: 0;
+  list-style-type: none;
+}
+
+.home_div ul li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.home_div ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.8em;
+  height: 0.8em;
+  background: #84c125;
+  border-radius: 0.15em;
+  display: inline-block;
+}
+
+.home_div p {
+  margin-bottom: 1rem;
+}
