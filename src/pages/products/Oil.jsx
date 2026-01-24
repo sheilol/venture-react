@@ -1,4 +1,6 @@
 import SimplePhotoGallery from "../../components/SimplePhotoGallery";
+import React, { useRef, useState, useEffect } from "react";
+import Return from "../../components/Return.jsx";
 const myPhotos = [
   {
     src: "/oil_extract/oil1.jpg",
@@ -44,9 +46,11 @@ const myPhotos = [
   }
 ];
 export default function Oil() {
+    const headingRef = useRef(null);
   return <>
   <div className='home_div'>
-  <h2>Oil Extraction Plant</h2>  
+  <h2 ref={headingRef}>Oil Extraction Plant</h2>  
+            <Return anchorRef={headingRef} />
    <p>We undertake turnkey projects in setting up complete Oil Extraction Plant for 32 variants of seeds. This involves processing the seed which either includes cutting it down to smaller pieces or cooking the same and breaking it open. After this, it is processed in the expellers where the oil is extracted from the seed.
 </p>
 <br />

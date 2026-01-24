@@ -1,24 +1,27 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function Cement() {
-  const headingRef = useRef(null);
-  const [linkPos, setLinkPos] = useState({ top: 120, right: 16, fixed: true });
+export default function Return({
+  anchorRef,            // ref to the heading element in the page (required)
+  offset = 8,           // px below the heading
+  right = 16,           // px from viewport right
+  breakpoint = 420,     // below this width the link will be inline (not fixed)
+  animationDelay = 180, // ms
+}) {
+  const [linkPos, setLinkPos] = useState({ top: 120, right, fixed: true });
 
   useEffect(() => {
     function update() {
-      const heading = headingRef.current;
-      const isSmall = window.innerWidth <= 420;
+      const heading = anchorRef?.current;
+      const isSmall = window.innerWidth <= breakpoint;
       if (!heading || isSmall) {
-        setLinkPos((p) => ({ ...p, fixed: false })); // flow with document on small screens
+        setLinkPos({ top: 0, right, fixed: false });
         return;
       }
-
       const rect = heading.getBoundingClientRect();
       const scrollY = window.scrollY || window.pageYOffset;
-      // place link slightly below the heading
-      const top = Math.round(scrollY + rect.top + rect.height + 8);
-      setLinkPos({ top, right: 16, fixed: true });
+      const top = Math.round(scrollY + rect.top + rect.height + offset);
+      setLinkPos({ top, right, fixed: true });
     }
 
     update();
@@ -31,12 +34,11 @@ export default function Cement() {
       window.removeEventListener("scroll", update);
       window.removeEventListener("load", update);
     };
-  }, []);
+  }, [anchorRef, offset, right, breakpoint]);
 
   return (
     <>
       <style>{`
-        /* small slide/fade-in + hover pop for the return link */
         .return-link-inline{
           display: inline-block;
           margin-top: 0.6rem;
@@ -58,7 +60,6 @@ export default function Cement() {
           color: #636363;
         }
 
-        /* fixed positioned link anchored to viewport right */
         .return-link-fixed{
           position: fixed;
           z-index: 1400;
@@ -69,8 +70,6 @@ export default function Cement() {
           padding: 6px 8px;
           border-radius: 6px;
           cursor: pointer;
-          /* initial lift so the fade-up animation is visible */
-          transform: translateY(-6px);
           will-change: transform;
         }
         .return-link-fixed h3{
@@ -86,61 +85,40 @@ export default function Cement() {
           box-shadow: 0 6px 18px rgba(0,0,0,0.12);
         }
 
-        /* ensure hover works on small screens sensibly */
         @media (max-width: 420px) {
           .return-link-fixed { position: static !important; display: inline-block; transform: none; box-shadow: none; padding: 0; }
           .return-link-inline h3 { font-size: 1rem; text-align: left; }
         }
       `}</style>
 
-      <div className="home_div">
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-          <h2 ref={headingRef} style={{ margin: 0 }}>Cement</h2>
+      {/* inline link for narrow layouts */}
+      <Link
+        to="/products"
+        className="return-link-inline fade-up"
+        aria-label="Return to Products"
+        style={{
+          display: linkPos.fixed ? "none" : "inline-block",
+          animationDelay: `${animationDelay}ms`,
+        }}
+      >
+        <h3>Return to Products</h3>
+      </Link>
 
-          {/* inline (in-flow) link for small screens / fallback */}
-          <Link
-            to="/products"
-            className="return-link-inline fade-up"
-            aria-label="Return to Products"
-            style={{
-              display: linkPos.fixed ? "none" : "inline-block",
-              animationDelay: "160ms"
-            }}
-          >
-            <h3>Return to Products</h3>
-          </Link>
-        </div>
-      </div>
-
-      {/* fixed positioned link aligned to viewport right, sits under heading */}
+      {/* fixed viewport-aligned link */}
       {linkPos.fixed && (
         <Link
           to="/products"
-          aria-label="Return to Products"
           className="return-link-fixed fade-up"
+          aria-label="Return to Products"
           style={{
             top: linkPos.top,
             right: linkPos.right,
-            animationDelay: "180ms"
+            animationDelay: `${animationDelay + 20}ms`,
           }}
         >
           <h3>Return to Products</h3>
         </Link>
       )}
-
-      <div className="home_div">
-        <ul>
-          <li>42.5 N GRADE OPC. As per specification BS EN 197-1:2000.</li>
-          <li>50 Kgs Bags.</li>
-          <li>Poly Polypropylene Bags, 2 Ply & 3 Ply paper bags.</li>
-          <li>Containerized and Break bulk shipments.</li>
-          <li>Inspections carried out as per your requirements.</li>
-          <li>We supply in containerized and break bulk shipment.</li>
-          <li>We also supply 53 Grade cement depending on the requirement.</li>
-          <li>We also supply cement in jumbo bags.</li>
-          <li>Minimum order for cement would be 1000 metric tonnes.</li>
-        </ul>
-      </div>
     </>
   );
 }

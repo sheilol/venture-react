@@ -1,5 +1,6 @@
 import header from '../header.png';
 import "../css/Pages.css";
+import { Link } from 'react-router-dom';
 export default function Home() {
   return (
     <>
@@ -22,12 +23,12 @@ export default function Home() {
         <br />
         <p>We are also exporting</p>
         <ul>
-        <li>Rice</li>
-        <li>Tinned Sardines</li>
-        <li>Cement</li>
-        <li>Machinery Parts</li>
-        <li>Waffle Cone Makers</li>
-        <li>Cars</li>
+        <li><Link to="/products/rice">Rice</Link></li>
+        <li><Link to="/products/sardines">Tinned Sardines</Link></li>
+        <li><Link to="/products/cement">Cement</Link></li>
+        <li><Link to="/products/machinery">Machinery Parts</Link></li>
+        <li><Link to="/products/waffle">Waffle Cone Makers</Link></li>
+        <li><Link to="/products/cars">Cars</Link></li>
         <li>Trucks</li>
         <li>Trailers</li>
         <li>Buses</li>

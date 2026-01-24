@@ -1,4 +1,6 @@
 import SimplePhotoGallery from "../../components/SimplePhotoGallery";
+import React, { useRef, useState, useEffect } from "react";
+import Return from "../../components/Return";
 const myPhotos = [
   {
     src: "/cold/cd1.jpg",
@@ -194,9 +196,13 @@ const myPhotos = [
   },
 ];
 export default function Cold() {
+    const headingRef = useRef(null);
+
   return <>
   <div className='home_div'>
-  <h2>Cold Drink Manufacturing Plant</h2>  
+  <h2 ref={headingRef}>Cold Drink Manufacturing Plant</h2>  
+            <Return anchorRef={headingRef} />
+
    <ul>
     <li>We setup complete Cold Drink / Beverage manufacturing Plant, both Automatic and Semi - Automatic depending on the needs of the customer. The minimum capacity being 2000 litres per hour. The upper limit is setup as per the needs of the customer.</li>
    <li>The purification process is carried out by RO ( Reverse Osmosis ), Carbon filter, UV ( Ultraviolet rays ) etc.</li>

@@ -1,62 +1,31 @@
 import LightboxGallery from "../../components/Lightboxgallery";
 import SimplePhotoGallery from "../../components/SimplePhotoGallery";
+import React from "react";
+import Return from "../../components/Return.jsx";
+
 const myPhotos = [
   {
-    src: "/cold/cd1.jpg",
-    width: 425,
-    height: 640
+    src: "/sardines/sardine1.jpg",
+    width: 787,
+    height: 361
 
   },
-  {
-    src: "/cold/cd2.jpg",
-    width: 640,
-    height: 425
-    
-  },
-  {
-    src: "/cold/cd3.jpg",
-    width: 425,
-    height: 640
-    
-  },
-  {
-    src: "/cold/cd4.jpg",
-    width: 640,
-    height: 425
-    
-  },
-  {
-    src: "/cold/cd5.jpg",
-    width: 640,
-    height: 425
-    
-  },
-  {
-    src: "/cold/cd6.jpg",
-    width: 640,
-    height: 425
-    
-  },
-  {
-    src: "/cold/cd7.jpg",
-    width: 640,
-    height: 425
-    
-  },
-  {
-    src: "/cold/cd8.jpg",
-    width: 640,
-    height: 425
-    
-  },
+   {
+    src: "/sardines/sardine2.jpg",
+    width: 787,
+    height: 361
+
+  }
 
 
 ];
 export default function Sardines() {
+  const headingRef = useRef(null);
   return <>
   <div className='home_div'>
-  <h2>Sardines</h2>
-  
+  <h2 ref={headingRef}>Sardines</h2>
+            <Return anchorRef={headingRef} />
+
   <h3>We supply tinned sardines in tomato sauce with the follows specs.</h3>
     <ul>
         <li>Tinned Sardines in Tomato Sauce.</li>

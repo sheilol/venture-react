@@ -1,7 +1,11 @@
+import React from "react";
+import Return from "../../components/Return.jsx";
 export default function Truck() {
+  const headingRef = React.useRef(null);
   return <>
   <div className='home_div'>
-  <h2>Trucks</h2>  
+  <h2 ref={headingRef}>Trucks</h2>  
+            <Return anchorRef={headingRef} />
     <p>We supply US manufactured trucks. These are both used and new. The used trucks are in excellent running conditions and are only shipped after they pass through the stringent checks which are carried out by our workshop. </p>
     <br />
     <p>We also change left hand drive trucks to right hand drive trucks, for countries which need right hand drive trucks. We have started doing conversion of left hand driven American trucks to right hand drive and exporting the same to our clients who require US manufactured truck. During this process the truck undergoes rigorous checkups and we service the truck before shipping the same.</p>

@@ -1,0 +1,57 @@
+:root{
+  --accent:#84c125;
+  --muted:#222;
+}
+
+/* simple upward fade used for cards / list items */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* navbar fade */
+@keyframes navFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* heading grow */
+@keyframes headingGrow {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* classes */
+.fade-up { animation: fadeUp .48s cubic-bezier(.2,.9,.2,1) both; }
+.nav-fade { animation: navFade .52s ease both; }
+.heading-animate { animation: headingGrow .6s ease both; }
+
+/* card / product animations */
+.card-animate {
+  animation: fadeUp .46s cubic-bezier(.2,.9,.2,1) both;
+  transition: transform .18s ease, box-shadow .18s ease;
+  will-change: transform;
+}
+.card-animate:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.16);
+}
+
+/* product image subtle scale on hover */
+.product-img {
+  transition: transform .28s ease, box-shadow .28s ease;
+  will-change: transform;
+}
+.product-img:hover { transform: scale(1.03); }
+
+/* thumbnail / lightbox strip */
+.thumb-animate {
+  transition: transform .18s ease, box-shadow .18s ease;
+  cursor: pointer;
+  will-change: transform;
+}
+.thumb-animate:hover { transform: scale(1.04); box-shadow: 0 6px 18px rgba(0,0,0,0.28); }
+
+/* small utilities */
+.stagger { opacity: 0; transform: translateY(8px); }
+.stagger.show { opacity: 1; transform: translateY(0); transition: opacity .34s ease, transform .34s ease; }

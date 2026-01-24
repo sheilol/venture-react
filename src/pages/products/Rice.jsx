@@ -1,7 +1,14 @@
+import React, { useRef, useState, useEffect } from "react";
+import Return from "../../components/Return";
+
 export default function Rice() {
+   const headingRef = useRef(null);
   return <>
   <div className='home_div'>
-  <h2>Rice</h2>  
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+  <h2 ref={headingRef}>Rice</h2>
+  <Return anchorRef={headingRef} />
+  </div>  
     <ul>
         <li>Long Grain White Rice, Parboiled rice & Basmati rice.</li>
         <li>Packing in 5 kgs, 10 kgs, 25 Kgs & 50 Kgs.</li>
