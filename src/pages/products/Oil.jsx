@@ -1,5 +1,5 @@
 import SimplePhotoGallery from "../../components/SimplePhotoGallery";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import Return from "../../components/Return.jsx";
 const myPhotos = [
   {

@@ -6,12 +6,10 @@ import './css/Pages.css'
 import './css/Navbar.css'
 import './index.css'
 import App from './App.jsx'
-import NavBar from './components/Navbar.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <NavBar />
       <App />
         
     </BrowserRouter>

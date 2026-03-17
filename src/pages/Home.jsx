@@ -8,7 +8,7 @@ export default function Home() {
       <img
         src={header}
         alt="header"
-        style={{ width: "100vw", height: "80vh", display: "block" }}
+        style={{ width: "100%", maxWidth: "100vw", height: "auto", display: "block" }}
       />
       <div className='home_div'>
         <h1>Venture Consultants</h1>
@@ -29,9 +29,9 @@ export default function Home() {
         <li><Link to="/products/machinery">Machinery Parts</Link></li>
         <li><Link to="/products/waffle">Waffle Cone Makers</Link></li>
         <li><Link to="/products/cars">Cars</Link></li>
-        <li>Trucks</li>
-        <li>Trailers</li>
-        <li>Buses</li>
+        <li><Link to="/products/trucks">Trucks</Link></li>
+        <li><Link to="/products/trailers">Trailers</Link></li>
+        <li><Link to="/products/buses">Buses</Link></li>
         </ul>
       </div>
       </div>

@@ -1,6 +1,6 @@
 import LightboxGallery from "../../components/Lightboxgallery";
 import SimplePhotoGallery from "../../components/SimplePhotoGallery";
-import React from "react";
+import React, { useRef } from "react";
 import Return from "../../components/Return.jsx";
 
 const myPhotos = [

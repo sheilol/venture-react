@@ -13,7 +13,7 @@ function Productcard({ title, image, page, delay = 0 }) {
           borderRadius: "20px",
           overflow: "hidden",
           boxShadow: "0 4px 16px rgba(0,0,0,0.10)",
-          background: "#f8f8f8",
+          background: "var(--card-bg)",
           textAlign: "center",
           animationDelay: `${delay}ms`
         }}
@@ -23,6 +23,7 @@ function Productcard({ title, image, page, delay = 0 }) {
             src={image}
             alt={title}
             className="product-img"
+            loading="lazy"
             style={{
               width: "100%",
               display: "block",
@@ -35,7 +36,7 @@ function Productcard({ title, image, page, delay = 0 }) {
           margin: "20px 0",
           fontWeight: "bold",
           fontSize: "1.3rem",
-          color: "#222"
+          color: "var(--card-text)"
         }}>
           {title}
         </h3>

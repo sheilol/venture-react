@@ -4,9 +4,11 @@ body, html {
     font-weight: 274;
     font-style: normal;
 
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 .home_bg {
-  background-color: #242424; /* Dark background color */
+  background-color: var(--bg-color);
   padding: 20px; /* Optional padding */
 }
 .home_div {
@@ -18,8 +20,8 @@ body, html {
   box-shadow: none;
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #FFFFFF;
-  background-color: #242424;
+  color: var(--text-color);
+  background-color: var(--bg-color);
   text-align: left;
 }
 
@@ -69,4 +71,26 @@ body, html {
 
 .home_div p {
   margin-bottom: 1rem;
+}
+
+.home_div a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.home_div a:hover {
+  color: #84c125;
+}
+
+@media (max-width: 768px) {
+  .home_div h1 {
+    font-size: clamp(2.4rem, 8vw, 3.6rem);
+    white-space: normal;
+  }
+
+  .home_div h2 {
+    font-size: clamp(2rem, 7vw, 3rem);
+    white-space: normal;
+  }
 }

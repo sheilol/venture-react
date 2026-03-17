@@ -15,13 +15,30 @@ export default function Contact() {
       setStatus("error");
       return;
     }
+
     setStatus("sending");
+
     try {
-      // simple local demo: send to your API endpoint here, or fallback to mailto
-      // Replace with real API call if available.
-      // await fetch("/api/contact", { method: "POST", body: JSON.stringify(form) });
-      console.log("Contact form submit:", form);
-      setTimeout(() => setStatus("sent"), 600); // simulate network
+      const formData = new FormData();
+      formData.append("access_key", "7de47c0d-adf6-4e2a-a94a-13d05bc709b0");
+      formData.append("name", form.name);
+      formData.append("email", form.email);
+      formData.append("message", form.message);
+      formData.append("subject", "New contact form submission");
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Form submission failed");
+      }
+
+      setStatus("sent");
+      setForm({ name: "", email: "", message: "" });
     } catch (err) {
       console.error(err);
       setStatus("error");
@@ -99,7 +116,7 @@ export default function Contact() {
               <br />
               <a href="tel:+919821860220">+91 9821 860 220</a>
               <br />
-              <a href="tel:+911098765432">+91 1098 765 432</a>
+              
             </p>
 
             <p>
