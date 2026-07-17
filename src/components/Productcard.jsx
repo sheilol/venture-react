@@ -8,17 +8,28 @@ function Productcard({ title, image, page, delay = 0 }) {
       <div
         className="card-animate"
         style={{
+          width: "100%",
           maxWidth: "300px",
+          minHeight: "100%",
           margin: "0 auto",
-          borderRadius: "20px",
+          borderRadius: "18px",
           overflow: "hidden",
-          boxShadow: "0 4px 16px rgba(0,0,0,0.10)",
+          boxShadow: "0 10px 24px rgba(0,0,0,0.12)",
           background: "var(--card-bg)",
           textAlign: "center",
-          animationDelay: `${delay}ms`
+          animationDelay: `${delay}ms`,
+          display: "flex",
+          flexDirection: "column"
         }}
       >
-        <div style={{ position: "relative", background: "#222" }}>
+        <div
+          style={{
+            position: "relative",
+            background: "#111827",
+            aspectRatio: "4 / 3",
+            overflow: "hidden"
+          }}
+        >
           <img
             src={image}
             alt={title}
@@ -26,20 +37,23 @@ function Productcard({ title, image, page, delay = 0 }) {
             loading="lazy"
             style={{
               width: "100%",
-              display: "block",
-              borderBottom: "4px solid #fff",
-              borderRadius: "20px 20px 0 0"
+              height: "100%",
+              objectFit: "cover",
+              display: "block"
             }}
           />
         </div>
-        <h3 style={{
-          margin: "20px 0",
-          fontWeight: "bold",
-          fontSize: "1.3rem",
-          color: "var(--card-text)"
-        }}>
-          {title}
-        </h3>
+        <div style={{ padding: "18px 16px 20px" }}>
+          <h3 style={{
+            margin: 0,
+            fontWeight: 700,
+            fontSize: "1.15rem",
+            color: "var(--card-text)",
+            lineHeight: 1.4
+          }}>
+            {title}
+          </h3>
+        </div>
       </div>
     </Link>
   );

@@ -1,36 +1,74 @@
 import * as React from "react";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
+
+const slides = [
+  {
+    src: "/cars/cd1.jpg",
+    alt: "image 1",
+    width: 1200,
+    height: 800,
+  },
+  {
+    src: "/cars/cd2.jpg",
+    alt: "image 2",
+    width: 1200,
+    height: 800,
+  },
+];
 
 export default function App() {
-  const [open, setOpen] = React.useState(false);
+  const [activeIndex, setActiveIndex] = React.useState(null);
+  const isOpen = activeIndex !== null;
+
+  React.useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setActiveIndex(null);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
 
   return (
-    <>
-      <button type="button" onClick={() => setOpen(true)}>
-        Open Lightbox
-      </button>
+    <div style={{ padding: 24 }}>
+      <h2>Gallery</h2>
+      <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+        {slides.map((slide, index) => (
+          <img
+            key={slide.src}
+            src={slide.src}
+            alt={slide.alt}
+            onClick={() => setActiveIndex(index)}
+            style={{ width: 180, height: 120, objectFit: "cover", borderRadius: 8, cursor: "pointer" }}
+          />
+        ))}
+      </div>
 
-      <Lightbox
-        open={open}
-        close={() => setOpen(false)}
-        slides={[
-          {
-            src: "/image1x3840.jpg",
-            alt: "image 1",
-            width: 3840,
-            height: 2560,
-            srcSet: [
-              { src: "//cd1.jpg" },
-              { src: "/image1x640.jpg", width: 640, height: 427 },
-              { src: "/image1x1200.jpg", width: 1200, height: 800 },
-              { src: "/image1x2048.jpg", width: 2048, height: 1365 },
-              { src: "/image1x3840.jpg", width: 3840, height: 2560 },
-            ],
-          },
-          // ...
-        ]}
-      />
-    </>
+      {isOpen ? (
+        <div
+          onClick={() => setActiveIndex(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            background: "rgba(0,0,0,0.9)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 24,
+          }}
+        >
+          <img
+            src={slides[activeIndex].src}
+            alt={slides[activeIndex].alt}
+            onClick={(event) => event.stopPropagation()}
+            style={{ maxWidth: "100%", maxHeight: "85vh", borderRadius: 12 }}
+          />
+        </div>
+      ) : null}
+    </div>
   );
 }

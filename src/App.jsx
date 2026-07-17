@@ -20,7 +20,8 @@ const Trailers = React.lazy(() => import("./pages/products/Trailers"));
 const Cold = React.lazy(() => import("./pages/products/Cold"));
 const Oil = React.lazy(() => import("./pages/products/Oil"));
 const Rice = React.lazy(() => import("./pages/products/Rice"));
-
+const Cars = React.lazy(() => import("./pages/products/Cars"));
+const Waffle = React.lazy(() => import("./pages/products/Waffle"));
 export default function App() {
   return (
     <>
@@ -49,6 +50,8 @@ export default function App() {
           <Route path="/products/cold" element={<Cold />} />
           <Route path="/products/oil" element={<Oil />} />
           <Route path="/products/rice" element={<Rice />} />
+          <Route path="/products/cars" element={<Cars />} />
+          <Route path="/products/waffle" element={<Waffle />} />
           <Route path="/approach" element={<Approach />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

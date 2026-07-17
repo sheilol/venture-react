@@ -1,13 +1,32 @@
 import * as React from "react";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
 import "../css/animations.css";
+import "../css/Pages.css";
 
 const images = import.meta.glob('../images/cold/*.{jpg,png,jpeg,gif,webp}', { eager: true, as: 'url' });
 const slides = Object.values(images).map((src) => ({ src, width: 1200, height: 800 }));
 
 export default function LightboxGallery() {
-  const [index, setIndex] = React.useState(-1);
+  const [activeIndex, setActiveIndex] = React.useState(null);
+  const isOpen = activeIndex !== null;
+
+  React.useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setActiveIndex(null);
+      } else if (event.key === "ArrowRight") {
+        setActiveIndex((current) => (current === null ? 0 : (current + 1) % slides.length));
+      } else if (event.key === "ArrowLeft") {
+        setActiveIndex((current) => (current === null ? slides.length - 1 : (current - 1 + slides.length) % slides.length));
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
+
+  const currentSlide = isOpen ? slides[activeIndex] : null;
 
   return (
     <>
@@ -37,17 +56,49 @@ export default function LightboxGallery() {
               border: "2px solid rgba(0,0,0,0.25)",
               animationDelay: `${i * 70}ms`
             }}
-            onClick={() => setIndex(i)}
+            onClick={() => setActiveIndex(i)}
           />
         ))}
       </div>
 
-      <Lightbox
-        index={index}
-        slides={slides}
-        open={index >= 0}
-        close={() => setIndex(-1)}
-      />
+      {isOpen && currentSlide ? (
+        <div
+          onClick={() => setActiveIndex(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1300,
+            background: "rgba(0,0,0,0.9)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 24,
+          }}
+        >
+          <div onClick={(event) => event.stopPropagation()} style={{ position: "relative" }}>
+            <button
+              type="button"
+              onClick={() => setActiveIndex(null)}
+              className="gallery-control gallery-control-close"
+              aria-label="Close image"
+            >
+              ×
+            </button>
+            <img
+              src={currentSlide.src}
+              alt={`Gallery ${activeIndex + 1}`}
+              style={{
+                display: "block",
+                maxWidth: "100%",
+                maxHeight: "85vh",
+                width: "auto",
+                height: "auto",
+                borderRadius: 12,
+              }}
+            />
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }

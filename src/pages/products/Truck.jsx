@@ -1,5 +1,78 @@
 import React from "react";
 import Return from "../../components/Return.jsx";
+import SimplePhotoGallery from "../../components/SimplePhotoGallery.jsx";
+const myPhotos = [
+  {
+    src: "/truck/truck1.jpg",
+        width: 3264,
+    height: 1836
+
+  },
+  {
+    src: "/truck/truck2.jpg",
+        width: 3264,
+    height: 1836
+
+  },
+  {
+    src: "/truck/truck3.jpg",
+        width: 3264,
+    height: 1836
+
+  },
+  {
+    src: "/truck/truck4.JPG",
+    width: 2304,
+    height: 1536
+
+  },
+  {
+    src: "/truck/truck5.JPG",
+    width: 3968,
+    height: 2976
+
+  },
+  {
+    src: "/truck/truck6.jpg",
+    width: 3264,
+    height: 1836
+  },
+  {
+    src: "/truck/truck7.jpg",
+    width: 3264,
+    height: 1836
+  },
+  {
+    src: "/truck/truck8.jpg",
+    width: 3264,
+    height: 1836
+
+  },
+  {
+    src: "/truck/truck9.jpg",
+    width: 3264,
+    height: 1836
+
+  },
+  {
+    src: "/truck/truck10.jpg",
+    width: 3264,
+    height: 1836
+
+  },
+  {
+    src: "/truck/truck11.jpg",
+    width: 3264,
+    height: 1836
+
+  },
+  {
+    src: "/truck/truck12.jpg",
+    width: 3264,  
+    height: 1836
+
+  }
+];
 export default function Truck() {
   const headingRef = React.useRef(null);
   return <>
@@ -22,7 +95,9 @@ export default function Truck() {
 
     <p>We supply trucks with Cummins N14, ISX, Detriot 12.7 Lt to Detriot 14 Lt engines.</p>
     <br />
-
+<div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+         <SimplePhotoGallery photos={myPhotos} forceFullscreen />
+        </div>
  
   </div>
   </>;

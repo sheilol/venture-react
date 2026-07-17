@@ -1,6 +1,32 @@
 import React, { useRef } from "react";
 import Return from "../../components/Return.jsx";
-  
+import SimplePhotoGallery from "../../components/SimplePhotoGallery.jsx";
+const myPhotos = [
+  {
+    src: "/trailer/trailer1.jpg",
+    width: 3648,
+    height: 2736
+
+  },
+  {
+    src: "/trailer/trailer2.jpg",
+    width: 3648,
+    height: 2736
+
+  },
+  {
+    src: "/trailer/trailer3.jpg",
+    width: 3648,
+    height: 2736
+
+  },
+  {
+    src: "/trailer/trailer4.jpg",
+    width: 600,
+    height: 450
+
+  },
+];
 export default function Trailers() {
   const headingRef = useRef(null);  
   return<> 
@@ -14,6 +40,10 @@ export default function Trailers() {
     <p>We supply 3 per shipment to minimize on shipment cost.</p>
 
     <p>We also ship 2 trailers in containers.</p>  
+
+    <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+         <SimplePhotoGallery photos={myPhotos} forceFullscreen />
+        </div>
   </div>
 </>
 }

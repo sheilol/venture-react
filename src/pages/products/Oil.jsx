@@ -67,7 +67,7 @@ There is second crushing involved too in which the seed is processed is once mor
    </ul>
    <p>All these 3 filters are capable of filtering the oil to very high level, bringing in complete transparency in the oil.</p>
 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-  <SimplePhotoGallery photos={myPhotos} />
+  <SimplePhotoGallery photos={myPhotos} forceFullscreen />
  </div>
   </div>
   </>;
