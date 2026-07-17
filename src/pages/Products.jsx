@@ -5,7 +5,7 @@ import sardine from "../sardine.jpg";
 import cement from "../cement.jpg";
 import cold from "../cold.jpg";
 import oil from "../oil.jpg";
-import rice from "../rice.jpg";
+import rice from "../rice.JPG";
 import waffle from "../waffle.jpg";
 import { Outlet, useLocation } from "react-router-dom";
 
